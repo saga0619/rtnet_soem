@@ -1,5 +1,9 @@
 # Simple Open EtherCAT Master Library (RTNET VERSION)
-[![Build Status](https://github.com/OpenEtherCATsociety/SOEM/workflows/build/badge.svg?branch=master)](https://github.com/OpenEtherCATsociety/SOEM/actions?workflow=build)
+
+rtnet patched SOEM! 
+
+https://openethercatsociety.github.io/doc/soem/
+
 
 
 # RTNET SOEM
@@ -53,7 +57,7 @@ Prerequisites for all platforms
 
  * CMake 3.9 or later
 
-Linux (XENOMAI)
+XENOMAI LINUX (UBUNTU 20.04 & LINUX 5.4.124)
 -----
 
    * `mkdir build`
