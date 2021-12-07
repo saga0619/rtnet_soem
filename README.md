@@ -1,8 +1,16 @@
 # Simple Open EtherCAT Master Library (RTNET VERSION)
 
-rtnet patched SOEM! 
+rtnet patched simple open ethercat master. 
 
-https://openethercatsociety.github.io/doc/soem/
+SOEM is an EtherCAT master library written in c, developed by OpenEthercatSociety (https://openethercatsociety.github.io/doc/soem/)
+
+RTnet is an Open Soure hard real-time network protocol stack for Xenomai and RTAI (real-time Linux extensions) 
+
+RTnet_SOEM is RealTime EtherCAT master library. 
+
+This library is recommended to implemented at ubuntu 20.04, Linux 5.4.124, xenomai-3.1.1
+
+In Ubuntu 18.04, RTnet did not operate normally
 
 
 
