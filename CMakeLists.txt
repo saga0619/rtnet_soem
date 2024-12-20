@@ -20,6 +20,8 @@ else()
   set(BUILD_TESTS FALSE)
 endif()
 
+find_package(Xenomai REQUIRED)
+
 if(WIN32)
   set(OS "win32")
   include_directories(oshw/win32/wpcap/Include)
@@ -33,21 +35,14 @@ if(WIN32)
   set(OS_LIBS wpcap.lib Packet.lib Ws2_32.lib Winmm.lib)
 elseif(UNIX AND NOT APPLE)
   set(OS "linux")
- execute_process(COMMAND xeno-config --posix --cflags
-OUTPUT_VARIABLE XENO_CFLAGS 
-OUTPUT_STRIP_TRAILING_WHITESPACE) 
- execute_process(COMMAND xeno-config --posix --ldflags
-OUTPUT_VARIABLE XENO_LDFLAGS
-OUTPUT_STRIP_TRAILING_WHITESPACE)
-#  
- set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${XENO_CFLAGS}")
- #set(CMAKE_LD_FLAGS "${CMAKE_LD_FLAGS} ${XENO_LDFLAGS}")
- #set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} ${XENO_LDFLAGS}")
- set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} ${XENO_LDFLAGS}")
-  set(OS_LIBS pthread rt)
- # set(OS_LIBS rt)
-  #include_directories(/usr/xenomai/include /usr/xenomai/include/cobalt)
-  #link_directories(/usr/xenomai/lib)
+  if(XENOMAI_FOUND)
+    message(STATUS "SOEM: Xenomai found")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${XENOMAI_POSIX_CFLAGS}")
+    set(OS_LIBS pthread rt ${XENOMAI_POSIX_LIBRARIES})
+  else()
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
+    set(OS_LIBS pthread rt)
+  endif()
 elseif(APPLE)
   # This must come *before* linux or MacOSX will identify as Unix.
   set(OS "macosx")
