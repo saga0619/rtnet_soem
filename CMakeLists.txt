@@ -20,7 +20,7 @@ else()
   set(BUILD_TESTS FALSE)
 endif()
 
-find_package(Xenomai REQUIRED)
+find_package(XENOMAI REQUIRED)
 
 if(WIN32)
   set(OS "win32")
